@@ -439,7 +439,7 @@
     height: 10px;
     content: '';
     display: inline-block;
-    z-index: 999;
+    z-index: 99;
     background: var(--b3-theme-surface);
 }
 
@@ -731,4 +731,8 @@
 .toolbar__item--disabled, .toolbar__item--disabled:hover {
     color: var(--b3-scroll-color);
     cursor: not-allowed;
+}
+
+.config-bazaar__readme{
+    z-index: 8;
 }
