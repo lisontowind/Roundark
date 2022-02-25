@@ -1,3 +1,9 @@
+@font-face{
+    font-family:"HarmonyOS Sans SC 01";src:url("./fonts/HarmonyOS_Sans_SC_Regular.ttf")
+}
+@font-face{
+    font-family:"JetBrains Mono 01";src:url("./fonts/JetBrainsMono-Regular.ttf")
+}
 :root {
     /* 主色 */
     --b3-theme-primary: #4285f4;
@@ -5,9 +11,9 @@
     --b3-theme-primary-lighter: rgba(66, 133, 244, 0.38);
     --b3-theme-primary-lightest: rgba(66, 133, 244, 0.12);
     --b3-theme-secondary: #f3a92f;
-    --b3-theme-background: #202020;
+    --b3-theme-background: #303030;
     --b3-theme-background-light: #000000;
-    --b3-theme-surface: #202020;
+    --b3-theme-surface: #303030;
     --b3-theme-surface-light: rgba(41, 41, 41, 0.86);
     --b3-theme-error: #d23f31;
 
@@ -19,12 +25,17 @@
     --b3-theme-on-error: #fff;
 
     /* 字体 */
-    --b3-font-family: "quote", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+    /* --b3-font-family: "quote", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
     --b3-font-family-code: "JetBrainsMono-Regular", mononoki, Consolas, "Liberation Mono", Menlo, Courier, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
     --b3-font-family-graph: mononoki;
     --b3-font-family-emoji: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "Android Emoji";
+    --b3-font-family-math: KaTeX_Math; */
+    --b3-font-family: "HarmonyOS Sans SC 01", "JetBrains Mono 01", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+    --b3-font-family-code: "JetBrains Mono 01", "HarmonyOS Sans SC 01", mononoki, Consolas, "Liberation Mono", Menlo, Courier, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+    --b3-font-family-graph: mononoki;
+    --b3-font-family-emoji: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "Android Emoji";
     --b3-font-family-math: KaTeX_Math;
-
+    
     /* 线条 */
     --b3-border-color: rgba(230, 230, 230, .1);
 
@@ -35,7 +46,7 @@
     --b3-list-hover: #3f3f3f;
 
     /* 菜单 */
-    --b3-menu-background: #242424;
+    --b3-menu-background: #353535;
 
     /* 提示 */
     --b3-tooltips-color: rgba(70, 72, 76, .86);
@@ -239,8 +250,11 @@
 
 .b3-dialog--open .b3-dialog__container {
     border-radius: 12px;
+    border: 1px solid #ffffff10;
 }
-
+.b3-tab-container {
+    border-radius: 12px;
+}
 .search__header .b3-text-filed--text {
     border-radius: 12px;
 }
@@ -252,6 +266,7 @@
 
 .b3-menu, .protyle-util {
     border-radius: 8px;
+    border: 1px solid #ffffff10;
 }
 
 .b3-menu__item--show .b3-menu__submenu {
@@ -261,13 +276,18 @@
 .toolbar__item {
     border-radius: 8px;
 }
-
+.protyle-toolbar__item {
+    border-radius: 8px;
+}
 .block__popover--move .block__icons {
     border-radius: 8px 8px 0 0;
 }
 
 .protyle-toolbar {
     border-radius: 8px;
+    background-color: #404040;
+    box-shadow: 0 0 10px #00000050;
+    border: 1px solid #ffffff10;
 }
 
 [data-type="navigation"]{
@@ -291,91 +311,70 @@
 
 /* 实现圆角的标签栏 */
 .layout-tab-bar .item{
+    transition: var(--b3-transition);
     position:relative;
     background-color: var(--b3-theme-background-light);
     line-height: 23px;
     box-shadow:0 0 0 0;
-    transition:background-color 0s;
     border-top-left-radius: 8px 8px;
     border-top-right-radius: 8px 8px;
 }
-.layout-tab-bar .item:not(.item--focus):hover{
-    border-radius: 8px;
-}
-.layout-tab-bar .item:not(.item--focus):hover:after,.layout-tab-bar .item:not(.item--focus):hover:before{
+
+.layout-tab-bar .item:after{
     position: absolute;
     content: '';
     bottom: 0px;
     display: inline-block;
     width: 10px;
-    background: var(--b3-list-hover);
+    background: transparent ; 
     height: 10px;
     z-index: 4;
+    right: -10px;
 }
 
-.layout-tab-bar .item:not(.item--focus):hover:after{
-    right: 0px;
-    z-index: 6;
-    border-bottom-right-radius: 8px 8px;
-}
-
-.layout-tab-bar .item:not(.item--focus):hover:before{
-    left: 0px;
-    z-index: 6;
-    border-bottom-left-radius: 8px 8px;
+.layout-tab-bar .item:before{
+    position: absolute;
+    content: '';
+    bottom: 0px;
+    display: inline-block;
+    width: 10px;
+    background: transparent; 
+    height: 10px;
+    z-index: 4;
+    left: -10px;
 }
 
 
 .layout-tab-bar .item--focus{
-    background-color: var(--b3-theme-background);
+    background: var(--b3-theme-background);
     z-index: 5;
 } 
 
-.layout-tab-bar .item--focus::after,.layout-tab-bar .item--focus::before{
-    position: absolute;
-    content: '';
-    bottom: 0px;
-    display: inline-block;
-    width: 10px;
-    background: var(--b3-theme-background-light);
-    height: 10px;
-    z-index: 4;
-}
-
 .layout-tab-bar .item--focus::after{
-    right: -10px;
-    border-bottom-left-radius: 8px 8px;
+    background:radial-gradient(circle at 100% 0, transparent 10px, var(--b3-theme-surface) 11px);
 }
 
 .layout-tab-bar .item--focus::before{
-    left: -10px;
-    border-bottom-right-radius: 8px 8px;
+
+    background:radial-gradient(circle at 0 0, transparent 10px, var(--b3-theme-surface) 11px);
+
 }
 
-.layout-tab-bar .item--focus .item__text:after,.layout-tab-bar .item--focus .item__text:before{
-    position: absolute;
-    content: '';
-    bottom: 0px;
-    display: inline-block;
-    width: 10px;
-    background: var(--b3-theme-background);
-    height: 10px;
-    z-index: 3;
+
+.layout-tab-bar .item:hover:not(.item--focus)::after{
+    background:radial-gradient(circle at 100% 0, transparent 10px, var(--b3-list-hover) 11px);
 }
-.layout-tab-bar .item--focus .item__text:after{
-    left: -10px;
-    z-index: 3;
+
+.layout-tab-bar .item:hover:not(.item--focus)::before{
+    background:radial-gradient(circle at 0 0, transparent 10px, var(--b3-list-hover) 11px);
 }
-.layout-tab-bar .item--focus .item__text:before{
-    right: -10px;
-    z-index: 3;
-}
+
 /* 实现中间的间距 */
 
 .layout__center>.fn__flex>.fn__flex-1{
     margin-right: 4px;
     margin-left: 4px;
-    min-width:250px;
+    min-width:360px;
 }
 .layout__center{
     margin-bottom: 4px;
@@ -392,10 +391,16 @@
 /* 实现圆角的侧栏 */
 *#dockLeft .dock__item{
     left: 4px;
+    transition: var(--b3-transition);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 *#dockRight .dock__item{
     right: 4px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: var(--b3-transition);
 }
 
 .dock--vertical>div:first-child:not(:empty){
@@ -408,80 +413,106 @@
 
 *#dockLeft .dock__item--active{
     position:relative;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
     background-color: var(--b3-theme-surface);
-    z-index: 2;
+    z-index: 99;
     overflow: visible;
 }
 
 
 *#dockRight .dock__item--active{
     position: relative;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
     background-color: var(--b3-theme-surface);
-    z-index: 2;
+    z-index: 99;
     overflow: visible;
 }
 
-.RoundTab,.RoundTab2{
+.RoundTab{
     position: absolute;
     float: left;
     width: 0px;
     height: 0px;
 }
 
+*#dockLeft .RoundTab::before{
+    right: -15px;
+    top: -22px;
+}
 
-.dock__item--active .RoundTab::before,.dock__item--active .RoundTab::after,.dock__item--active .RoundTab2::before,.dock__item--active .RoundTab2::after{
+*#dockLeft .RoundTab::after{
+    right: -15px;
+    bottom: -38px;
+}
+
+
+*#dockRight .RoundTab::before{
+    left: -15px;
+    top: -22px;
+}
+
+*#dockRight .RoundTab::after{
+    left: -15px;
+    bottom: -38px;
+}
+
+#dockLeft .dock__item .RoundTab::before,#dockLeft .dock__item .RoundTab::after,#dockRight .dock__item .RoundTab::before,#dockRight .dock__item .RoundTab::after{
     position: absolute;
     width: 10px;
     height: 10px;
     content: '';
     display: inline-block;
     z-index: 99;
-    background: var(--b3-theme-surface);
+    background: transparent;
+
 }
 
-*#dockLeft .RoundTab::before,*#dockLeft .RoundTab2::before{
-    right: -15px;
-    top: -22px;
+*#dockLeft .dock__item--active .RoundTab::before{
+    background:radial-gradient(circle at 0 0, transparent 10px, var(--b3-theme-surface) 11px);
 }
 
-*#dockLeft .RoundTab2::before{
-    border-bottom-right-radius:10px;
-    background:  var(--b3-theme-background-light);
+*#dockLeft .dock__item--active .RoundTab::after{
+    background:radial-gradient(circle at 0 100%, transparent 10px, var(--b3-theme-surface) 11px);
 }
 
-*#dockLeft .RoundTab::after,*#dockLeft .RoundTab2::after{
-    right: -15px;
-    bottom: -38px;
+
+*#dockRight .dock__item--active .RoundTab::before{
+    background:radial-gradient(circle at 100% 0, transparent 10px, var(--b3-theme-surface) 11px);
 }
 
-*#dockLeft .RoundTab2::after{
-    border-top-right-radius:10px;
-    background:  var(--b3-theme-background-light);
+*#dockRight .dock__item--active .RoundTab::after{
+    background:radial-gradient(circle at 100% 100%, transparent 10px, var(--b3-theme-surface) 11px);
 }
 
-*#dockRight .RoundTab::before,*#dockRight .RoundTab2::before{
-    left: -15px;
-    top: -22px;
+/* *#dockLeft .dock__item:not(.dock__item--active):hover{
+    background-color: var(--b3-list-hover);
+    border-radius: 8px;
 }
 
-*#dockRight .RoundTab2::before{
-    border-bottom-left-radius:10px;
-    background:  var(--b3-theme-background-light);
+*#dockRight .dock__item:not(.dock__item--active):hover{
+    background-color: var(--b3-list-hover);
+    border-radius: 8px;
+} */
+
+/* *#dockLeft .dock__item:not(.dock__item--active):hover .RoundTab::before{
+    background:radial-gradient(circle at 0 0, transparent 10px, var(--b3-list-hover) 11px);
+    z-index: 90;
 }
 
-*#dockRight .RoundTab::after,*#dockRight .RoundTab2::after{
-    left: -15px;
-    bottom: -38px;
+*#dockLeft .dock__item:not(.dock__item--active):hover .RoundTab::after{
+    background:radial-gradient(circle at 0 100%, transparent 10px, var(--b3-list-hover) 11px);
+    z-index: 90;
 }
 
-*#dockRight .RoundTab2::after{
-    border-top-left-radius:10px;
-    background:  var(--b3-theme-background-light);
+*#dockRight .dock__item:not(.dock__item--active):hover .RoundTab::before{
+    background:radial-gradient(circle at 100% 0, transparent 10px, var(--b3-list-hover) 11px);
+    z-index: 90;
 }
+
+*#dockRight .dock__item:not(.dock__item--active):hover .RoundTab::after{
+    background:radial-gradient(circle at 100% 100%, transparent 10px, var(--b3-list-hover) 11px);
+    z-index: 90;
+} */
+
+
 
 /* 其他细节 */
 .block__icons--active{
@@ -507,8 +538,8 @@
 /* 标签增加圆角 */
 
 .fn__flex .layout-tab-bar{
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
 }
 .layout-tab-container{
     border-top-left-radius: 8px;
@@ -735,4 +766,83 @@
 
 .config-bazaar__readme{
     z-index: 8;
+}
+
+.protyle-wysiwyg [data-node-id].li>[data-node-id]:before {
+    border-left: 1px solid #ffffff20;
+}
+/* ----------如果希望取消挖空效果，请删除这段代码 Start---------------- */
+/* 修改高亮为挖空效果，但是预览模式关闭（毕竟需要导出） */
+
+
+mark {
+    background-color: var(--b3-protyle-inline-mark-background);
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%,   
+                            color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),   
+                            color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),   
+                            color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),   
+                            to(transparent));   
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,   
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,   
+                        transparent 75%, transparent);   
+    background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,   
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,   
+                        transparent 75%, transparent);   
+    background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,   
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,   
+                        transparent 75%, transparent); 
+    background-size:5px 5px;  
+    color: var(--b3-protyle-inline-mark-color);
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.protyle-wysiwyg mark{
+    color: transparent;
+    transition: color 2s ease-in-out;
+}
+.protyle-wysiwyg [data-node-id] [spellcheck="false"] mark:hover{
+    color: var(--b3-protyle-inline-mark-color);
+    transition: color 0.2s ease-in-out;
+}
+.protyle-content{
+    padding-top: 31px;
+    background-color: #333333;
+} 
+
+.block__popover--move .protyle-content{
+    background-color: #33333300;
+}
+
+.block__popover--move .protyle-breadcrumb{
+    position: relative;
+    background: #00000000;
+    backdrop-filter: blur(0);
+}
+
+
+.spread-search__preview {
+    background-color: #00000000;
+}
+
+.search__header {
+    border-radius: 12px;
+}
+
+.b3-tab-container .layout-tab-bar{
+    background-color: #00000000;
+}
+
+.b3-tab-container .layout-tab-bar .item {
+    background-color: #00000000;
+    border-radius: 8px;
+}
+
+.b3-tab-container .layout-tab-bar .item--focus {
+    background-color: #000000;
+}
+
+.b3-tab-container .layout-tab-bar .item:hover:before, .b3-tab-container .layout-tab-bar .item:hover:after {
+    background: #00000000;
 }

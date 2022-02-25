@@ -21,27 +21,27 @@ function addRoundTab(){
         }
     }
 }
-function addRoundTab2(){
-    if (document.getElementsByClassName("RoundTab2").length < 1){
-        var x = document.getElementsByClassName("dock__item")
-        var i;
-        for (i = 0; i < x.length; i++) {
-            var div = document.createElement("div");        
-            var divattr = document.createAttribute("class");
-            divattr.value = "RoundTab2"; 
-            div.setAttributeNode(divattr);
-            var style = document.createAttribute("style");
-            div.setAttributeNode(style);
-            div.style.float="left";
-            div.style.position="absolute";
-            div.style.width = (0+"px");
-            div.style.height = (0+"px");
-            x[i].appendChild(div) ;
-        }
-    }
-}
+// function addRoundTab2(){
+//     if (document.getElementsByClassName("RoundTab2").length < 1){
+//         var x = document.getElementsByClassName("dock__item")
+//         var i;
+//         for (i = 0; i < x.length; i++) {
+//             var div = document.createElement("div");        
+//             var divattr = document.createAttribute("class");
+//             divattr.value = "RoundTab2"; 
+//             div.setAttributeNode(divattr);
+//             var style = document.createAttribute("style");
+//             div.setAttributeNode(style);
+//             div.style.float="left";
+//             div.style.position="absolute";
+//             div.style.width = (0+"px");
+//             div.style.height = (0+"px");
+//             x[i].appendChild(div) ;
+//         }
+//     }
+// }
 
 (function(){
     addRoundTab();
-    addRoundTab2();
+    // addRoundTab2();
 })()
