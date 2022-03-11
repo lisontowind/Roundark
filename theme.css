@@ -314,7 +314,7 @@
     transition: var(--b3-transition);
     position:relative;
     background-color: var(--b3-theme-background-light);
-    line-height: 23px;
+    /* line-height: 23px; */
     box-shadow:0 0 0 0;
     border-top-left-radius: 8px 8px;
     border-top-right-radius: 8px 8px;
@@ -376,10 +376,10 @@
     margin-left: 4px;
     min-width:360px;
 }
-.layout__center{
+/* .layout__center{
     margin-bottom: 4px;
 
-}
+} */
 
 .fn__flex-column .fn__flex-shrink>.fn__flex{
     margin-bottom: 4px;
