@@ -376,10 +376,10 @@
     margin-left: 4px;
     min-width:360px;
 }
-/* .layout__center{
+.layout__center{
     margin-bottom: 4px;
 
-} */
+}
 
 .fn__flex-column .fn__flex-shrink>.fn__flex{
     margin-bottom: 4px;
@@ -544,6 +544,7 @@
 .layout-tab-container{
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    /* background-color:#00000000; */
 }
 
 
@@ -808,7 +809,7 @@ mark {
 }
 .protyle-content{
     padding-top: 31px;
-    background-color: #333333;
+    background-color: var(--b3-theme-background);;
 } 
 
 .block__popover--move .protyle-content{
